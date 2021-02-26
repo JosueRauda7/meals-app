@@ -1,9 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, StatusBar } from "react-native";
 
 const FavoritesScreen = (props) => {
   return (
     <View style={styles.screen}>
+      <StatusBar barStyle='light-content' backgroundColor='#FA003F' />
       <Text>The favorites Screen!</Text>
     </View>
   );
