@@ -1,11 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, StatusBar } from "react-native";
+import { CATEGORIES } from "../data/dummy-data";
 
 const CategoryMealsScreen = (props) => {
+  // Recibiendo parámetros de la navegación
+  const catId = props.navigation.getParam("categoryId");
+  const selectedCategory = CATEGORIES.find((cat) => catId === cat.id);
+
   return (
     <View style={styles.screen}>
-      <StatusBar barStyle='light-content' backgroundColor='#FA003F' />
-      <Text>The category meals Screen!</Text>
+      <StatusBar barStyle='light-content' backgroundColor='#c60034' />
+      <Text>{selectedCategory.title}</Text>
       <Button
         title='Ver Detalles'
         onPress={() => {
@@ -14,8 +19,24 @@ const CategoryMealsScreen = (props) => {
           });
         }}
       />
+      <Button
+        title='Regresar'
+        onPress={() => {
+          // props.navigation.goBack();
+          props.navigation.pop();
+        }}
+      />
     </View>
   );
+};
+
+CategoryMealsScreen.navigationOptions = (navigationData) => {
+  const catId = navigationData.navigation.getParam("categoryId");
+  const selectedCategory = CATEGORIES.find((cat) => catId === cat.id);
+
+  return {
+    headerTitle: selectedCategory.title,
+  };
 };
 
 const styles = StyleSheet.create({
