@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, StatusBar, Button } from "react-native";
 const MealDetailScreen = (props) => {
   return (
     <View style={styles.screen}>
-      <StatusBar barStyle='light-content' backgroundColor='#FA003F' />
+      <StatusBar barStyle='light-content' backgroundColor='#c60034' />
       <Text>The Maeal Detail Screen!</Text>
       <Button
         title='Regresar a Categorias'

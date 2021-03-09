@@ -1,30 +1,37 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, StatusBar } from "react-native";
-import { CATEGORIES } from "../data/dummy-data";
+import { View, StyleSheet, StatusBar, FlatList } from "react-native";
+import MealItem from "../components/MealItem";
+import { CATEGORIES, MEALS } from "../data/dummy-data";
 
 const CategoryMealsScreen = (props) => {
+  const renderMealItem = (itemData) => {
+    return (
+      <MealItem
+        title={itemData.item.title}
+        duration={itemData.item.duration}
+        complexity={itemData.item.complexity}
+        affordability={itemData.item.affordability}
+        image={itemData.item.imageUrl}
+        onSelectMeal={() => {}}
+      />
+    );
+  };
+
   // Recibiendo parámetros de la navegación
   const catId = props.navigation.getParam("categoryId");
-  const selectedCategory = CATEGORIES.find((cat) => catId === cat.id);
+
+  const displayedMeals = MEALS.filter(
+    (meal) => meal.categoryIds.indexOf(catId) >= 0
+  );
 
   return (
     <View style={styles.screen}>
       <StatusBar barStyle='light-content' backgroundColor='#c60034' />
-      <Text>{selectedCategory.title}</Text>
-      <Button
-        title='Ver Detalles'
-        onPress={() => {
-          props.navigation.navigate({
-            routeName: "MealDetails",
-          });
-        }}
-      />
-      <Button
-        title='Regresar'
-        onPress={() => {
-          // props.navigation.goBack();
-          props.navigation.pop();
-        }}
+      <FlatList
+        style={{ width: "90%", marginVertical: 15 }}
+        data={displayedMeals}
+        keyExtractor={(item, index) => item.id}
+        renderItem={renderMealItem}
       />
     </View>
   );
