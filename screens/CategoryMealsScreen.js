@@ -12,7 +12,25 @@ const CategoryMealsScreen = (props) => {
         complexity={itemData.item.complexity}
         affordability={itemData.item.affordability}
         image={itemData.item.imageUrl}
-        onSelectMeal={() => {}}
+        onSelectMeal={() => {
+          props.navigation.navigate({
+            routeName: "MealDetails",
+            params: {
+              mealId: itemData.item.id,
+              // title: itemData.item.title,
+              // duration: itemData.item.duration,
+              // complexity: itemData.item.complexity,
+              // affordability: itemData.item.affordability,
+              // ingredients: itemData.item.ingredients,
+              // image: itemData.item.imageUrl,
+              // steps: itemData.item.steps,
+              // isGlutenFree: itemData.item.isGlutenFree,
+              // isVegan: itemData.item.isVegan,
+              // isLactoseFree: itemData.item.isLactoseFree,
+              // isVegetarian: itemData.item.isVegetarian,
+            },
+          });
+        }}
       />
     );
   };
